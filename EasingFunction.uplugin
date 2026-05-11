@@ -1,0 +1,23 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "1.0.0",
+	"FriendlyName": "Simple Easing Function",
+	"Description": "Support 'Easing Function Library' and 'Async Actions'",
+	"Category": "Made by Youllee",
+	"CreatedBy": "Youllee",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"EngineVersion": "5.7.0",
+	"CanContainContent": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "EasingFunction",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}
