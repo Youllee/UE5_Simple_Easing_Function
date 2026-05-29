@@ -136,7 +136,7 @@ float UEasingFunctionLibrary::ApplyEaseOutIn(float percent, float exponential)
 
 float UEasingFunctionLibrary::EasingFunction(float percent, EEasingType easingType, float exponential)
 {
-	// ÀÌ ÇÔ¼ö´Â ¸Å Æ½¸¶´Ù È£ÃâµÇ±â ¶§¹®¿¡, ¹æ¾îÄÚµå¸¦ ÀÇµµÀûÀ¸·Î »ı·«ÇÑ´Ù.
+	// ì´ í•¨ìˆ˜ëŠ” ë§¤ í‹±ë§ˆë‹¤ í˜¸ì¶œë˜ê¸° ë•Œë¬¸ì—, ë°©ì–´ì½”ë“œë¥¼ ì˜ë„ì ìœ¼ë¡œ ìƒëµí•œë‹¤.
 	// float safePercent = FMath::Clamp(percent, 0.0f, 1.0f);
 	// float safeExponential = FMath::Max(exponential, 0.0f);
 
@@ -181,7 +181,7 @@ float UEasingFunctionLibrary::EasingFunction(float percent, EEasingType easingTy
 
 float UEasingFunctionLibrary::K2_EasingFunction(float percent, EEasingType easingType, float exponential)
 {
-	// ºí·çÇÁ¸°Æ®¿¡¼­ Á÷Á¢ È£Ãâ ½Ã¿¡¸¸, ¹æ¾îÄÚµå Àû¿ë
+	// ë¸”ë£¨í”„ë¦°íŠ¸ì—ì„œ ì§ì ‘ í˜¸ì¶œ ì‹œì—ë§Œ, ë°©ì–´ì½”ë“œ ì ìš©
 	float safePercent = FMath::Clamp(percent, 0.0f, 1.0f);
 	float safeExponential = FMath::Max(exponential, 0.0f);
 
