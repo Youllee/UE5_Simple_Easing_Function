@@ -1,4 +1,4 @@
-#include "EasingFunctionLibrary.h"
+﻿#include "EasingFunctionLibrary.h"
 #include "EasingFunction.h"
 
 UEasingFunctionLibrary::UEasingFunctionLibrary(const FObjectInitializer& ObjectInitializer)
