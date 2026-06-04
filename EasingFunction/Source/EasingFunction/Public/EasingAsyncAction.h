@@ -67,7 +67,7 @@ public:
 
 protected:
 	// v1.0 :  각 타입별 StartEasing_* 함수에서 공통 설정을 초기화하기 위한 함수입니다.
-	void InitializeBase(UWorld* InContextWorld, EEasingType InEasingType, float InExponential, float InLoopDuration, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool bInTickableWhenPaused);
+	void InitializeBase(UWorld* InContextWorld, EEasingType InEasingType, float InExponential, float InLoopDuration, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool bInTickableWhenPaused);
 	// v1.0 : 액션을 실제로 종료하고 Tick을 멈춘 뒤 GC 대상이 되도록 합니다.
 	void Finish();
 	// v1.1 : 이번 Tick에서 Update 델리게이트를 호출할지 판단합니다.
@@ -114,11 +114,25 @@ public:
 	float End;
 
 public:
+	/**
+	 * Starts a float easing async action.
+	 * @param InEasingType Easing curve type to use.
+	 * @param InExponential Exponent value used by exponential easing types.
+	 * @param InLoopDuration Duration of one easing loop in seconds.
+	 * @param InBegin Start value.
+	 * @param InEnd End value.
+	 * @param InLoopCount Number of times the easing loop repeats.
+	 * @param InMaxUpdateRate Maximum update rate. Use 0 or less depending on the plugin rule.
+	 * @param bInRoundTrip If true, eases from Begin to End and back to Begin.
+	 * @param InTickableWhenPaused If true, the action keeps ticking while the game is paused.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Easing Function Library", meta = (BlueprintInternalUseOnly = "true", DisplayName = "Start Easing (Float)"
 		, HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", InExponential = "2.0f", InLoopDuration = "1.0f", InBegin = "0.0f", InEnd = "1.0f"
-		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false", AdvancedDisplay = "InMaxUpdateRate, InTickableWhenPaused"))
-	static UAsyncEasingAction_Float* StartEasing_Float(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration
-		, float InBegin, float InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused);
+		, InLoopCount = "1", InMaxUpdateRate = "60", bInRoundTrip = "false", InTickableWhenPaused = "false"
+		, AdvancedDisplay = "InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused"))
+	static UAsyncEasingAction_Float* StartEasing_Float(const UObject* WorldContextObject
+		, EEasingType InEasingType, float InExponential, float InLoopDuration, float InBegin, float InEnd
+		, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused);
 
 	virtual void BeginDestroy() override;
 	virtual void Cancel() override;
@@ -148,11 +162,25 @@ public:
 	FVector2D End;
 
 public:
+	/**
+	 * Starts a Vector2D easing async action.
+	 * @param InEasingType Easing curve type to use.
+	 * @param InExponential Exponent value used by exponential easing types.
+	 * @param InLoopDuration Duration of one easing loop in seconds.
+	 * @param InBegin Start value.
+	 * @param InEnd End value.
+	 * @param InLoopCount Number of times the easing loop repeats.
+	 * @param InMaxUpdateRate Maximum update rate. Use 0 or less depending on the plugin rule.
+	 * @param bInRoundTrip If true, eases from Begin to End and back to Begin.
+	 * @param InTickableWhenPaused If true, the action keeps ticking while the game is paused.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Easing Function Library", meta = (BlueprintInternalUseOnly = "true", DisplayName = "Start Easing (Vector2D)"
 		, HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", InExponential = "2.0f", InLoopDuration = "1.0f"
-		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false", AdvancedDisplay = "InMaxUpdateRate, InTickableWhenPaused"))
-	static UAsyncEasingAction_Vector2D* StartEasing_Vector2D(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration
-		, FVector2D InBegin, FVector2D InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused);
+		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false"
+		, AdvancedDisplay = "InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused"))
+	static UAsyncEasingAction_Vector2D* StartEasing_Vector2D(const UObject* WorldContextObject
+		, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector2D InBegin, FVector2D InEnd
+		, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused);
 
 	virtual void BeginDestroy() override;
 	virtual void Cancel() override;
@@ -182,11 +210,25 @@ public:
 	FVector End;
 
 public:
+	/**
+	 * Starts a Vector easing async action.
+	 * @param InEasingType Easing curve type to use.
+	 * @param InExponential Exponent value used by exponential easing types.
+	 * @param InLoopDuration Duration of one easing loop in seconds.
+	 * @param InBegin Start value.
+	 * @param InEnd End value.
+	 * @param InLoopCount Number of times the easing loop repeats.
+	 * @param InMaxUpdateRate Maximum update rate. Use 0 or less depending on the plugin rule.
+	 * @param bInRoundTrip If true, eases from Begin to End and back to Begin.
+	 * @param InTickableWhenPaused If true, the action keeps ticking while the game is paused.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Easing Function Library", meta = (BlueprintInternalUseOnly = "true", DisplayName = "Start Easing (Vector)"
 		, HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", InExponential = "2.0f", InLoopDuration = "1.0f"
-		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false", AdvancedDisplay = "InMaxUpdateRate, InTickableWhenPaused"))
-	static UAsyncEasingAction_Vector* StartEasing_Vector(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration
-		, FVector InBegin, FVector InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused);
+		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false"
+		, AdvancedDisplay = "InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused"))
+	static UAsyncEasingAction_Vector* StartEasing_Vector(const UObject* WorldContextObject
+		, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector InBegin, FVector InEnd
+		, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused);
 
 	virtual void BeginDestroy() override;
 	virtual void Cancel() override;
@@ -216,11 +258,25 @@ public:
 	FLinearColor End;
 
 public:
+	/**
+	 * Starts a color easing async action.
+	 * @param InEasingType Easing curve type to use.
+	 * @param InExponential Exponent value used by exponential easing types.
+	 * @param InLoopDuration Duration of one easing loop in seconds.
+	 * @param InBegin Start value.
+	 * @param InEnd End value.
+	 * @param InLoopCount Number of times the easing loop repeats.
+	 * @param InMaxUpdateRate Maximum update rate. Use 0 or less depending on the plugin rule.
+	 * @param bInRoundTrip If true, eases from Begin to End and back to Begin.
+	 * @param InTickableWhenPaused If true, the action keeps ticking while the game is paused.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Easing Function Library", meta = (BlueprintInternalUseOnly = "true", DisplayName = "Start Easing (Color)"
 		, HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", InExponential = "2.0f", InLoopDuration = "1.0f"
-		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false", AdvancedDisplay = "InMaxUpdateRate, InTickableWhenPaused"))
-	static UAsyncEasingAction_Color* StartEasing_Color(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration
-		, FLinearColor InBegin, FLinearColor InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused);
+		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false"
+		, AdvancedDisplay = "InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused"))
+	static UAsyncEasingAction_Color* StartEasing_Color(const UObject* WorldContextObject
+		, EEasingType InEasingType, float InExponential, float InLoopDuration, FLinearColor InBegin, FLinearColor InEnd
+		, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused);
 
 	virtual void BeginDestroy() override;
 	virtual void Cancel() override;
@@ -250,11 +306,25 @@ public:
 	FRotator End;
 
 public:
+	/**
+	 * Starts a rotator easing async action.
+	 * @param InEasingType Easing curve type to use.
+	 * @param InExponential Exponent value used by exponential easing types.
+	 * @param InLoopDuration Duration of one easing loop in seconds.
+	 * @param InBegin Start value.
+	 * @param InEnd End value.
+	 * @param InLoopCount Number of times the easing loop repeats.
+	 * @param InMaxUpdateRate Maximum update rate. Use 0 or less depending on the plugin rule.
+	 * @param bInRoundTrip If true, eases from Begin to End and back to Begin.
+	 * @param InTickableWhenPaused If true, the action keeps ticking while the game is paused.
+	 */
 	UFUNCTION(BlueprintCallable, Category = "Easing Function Library", meta = (BlueprintInternalUseOnly = "true", DisplayName = "Start Easing (Rotator)"
 		, HidePin = "WorldContextObject", DefaultToSelf = "WorldContextObject", InExponential = "2.0f", InLoopDuration = "1.0f"
-		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false", AdvancedDisplay = "InMaxUpdateRate, InTickableWhenPaused"))
-	static UAsyncEasingAction_Rotator* StartEasing_Rotator(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration
-		, FRotator InBegin, FRotator InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused);
+		, InLoopCount = "1", bInRoundTrip = "false", InMaxUpdateRate = "60", InTickableWhenPaused = "false"
+		, AdvancedDisplay = "InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused"))
+	static UAsyncEasingAction_Rotator* StartEasing_Rotator(const UObject* WorldContextObject
+		, EEasingType InEasingType, float InExponential, float InLoopDuration, FRotator InBegin, FRotator InEnd
+		, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused);
 
 	virtual void BeginDestroy() override;
 	virtual void Cancel() override;

@@ -96,12 +96,13 @@ void UAsyncEasingAction::Finish()
 	SetReadyToDestroy();
 }
 
-void UAsyncEasingAction::InitializeBase(UWorld* InContextWorld, EEasingType InEasingType, float InExponential, float InLoopDuration, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool bInTickableWhenPaused)
+void UAsyncEasingAction::InitializeBase(UWorld* InContextWorld, EEasingType InEasingType, float InExponential, float InLoopDuration, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool bInTickableWhenPaused)
 {
 	WorldContextObject = InContextWorld;
 	EasingType = InEasingType;
 	Exponential = FMath::Max(InExponential, 0.0f);
 	LoopDuration = FMath::Max(InLoopDuration, 0.0f);
+
 	LoopCount = InLoopCount;
 	MaxUpdateRate = InMaxUpdateRate;
 	UpdateInterval = (MaxUpdateRate > 0) ? 1.0f / static_cast<float>(MaxUpdateRate) : 0.0f;
@@ -163,7 +164,7 @@ float UAsyncEasingAction::GetPercent()
 	return static_cast<float>(CurrentLoopCount) + GetLocalPercent();
 }
 
-UAsyncEasingAction_Float* UAsyncEasingAction_Float::StartEasing_Float(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, float InBegin, float InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused)
+UAsyncEasingAction_Float* UAsyncEasingAction_Float::StartEasing_Float(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, float InBegin, float InEnd, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused)
 {
 	if (IsValid(GEngine) == false)
 	{
@@ -190,7 +191,7 @@ UAsyncEasingAction_Float* UAsyncEasingAction_Float::StartEasing_Float(const UObj
 
 	NewAction->Begin = InBegin;
 	NewAction->End = InEnd;
-	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, bInRoundTrip, InMaxUpdateRate, InTickableWhenPaused);
+	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused);
 	NewAction->RegisterWithGameInstance(ContextWorld->GetGameInstance());
 
 	return NewAction;
@@ -251,7 +252,7 @@ void UAsyncEasingAction_Float::BroadcastCompleted(float percent)
 }
 
 
-UAsyncEasingAction_Vector2D* UAsyncEasingAction_Vector2D::StartEasing_Vector2D(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector2D InBegin, FVector2D InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused)
+UAsyncEasingAction_Vector2D* UAsyncEasingAction_Vector2D::StartEasing_Vector2D(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector2D InBegin, FVector2D InEnd, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused)
 {
 	if (IsValid(GEngine) == false)
 	{
@@ -278,7 +279,7 @@ UAsyncEasingAction_Vector2D* UAsyncEasingAction_Vector2D::StartEasing_Vector2D(c
 
 	NewAction->Begin = InBegin;
 	NewAction->End = InEnd;
-	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, bInRoundTrip, InMaxUpdateRate, InTickableWhenPaused);
+	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused);
 	NewAction->RegisterWithGameInstance(ContextWorld->GetGameInstance());
 
 	return NewAction;
@@ -338,7 +339,7 @@ void UAsyncEasingAction_Vector2D::BroadcastCompleted(float percent)
 	}
 }
 
-UAsyncEasingAction_Vector* UAsyncEasingAction_Vector::StartEasing_Vector(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector InBegin, FVector InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused)
+UAsyncEasingAction_Vector* UAsyncEasingAction_Vector::StartEasing_Vector(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FVector InBegin, FVector InEnd, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused)
 {
 	if (IsValid(GEngine) == false)
 	{
@@ -365,7 +366,7 @@ UAsyncEasingAction_Vector* UAsyncEasingAction_Vector::StartEasing_Vector(const U
 
 	NewAction->Begin = InBegin;
 	NewAction->End = InEnd;
-	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, bInRoundTrip, InMaxUpdateRate, InTickableWhenPaused);
+	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused);
 	NewAction->RegisterWithGameInstance(ContextWorld->GetGameInstance());
 
 	return NewAction;
@@ -425,7 +426,7 @@ void UAsyncEasingAction_Vector::BroadcastCompleted(float percent)
 	}
 }
 
-UAsyncEasingAction_Color* UAsyncEasingAction_Color::StartEasing_Color(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FLinearColor InBegin, FLinearColor InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused)
+UAsyncEasingAction_Color* UAsyncEasingAction_Color::StartEasing_Color(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FLinearColor InBegin, FLinearColor InEnd, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused)
 {
 	if (IsValid(GEngine) == false)
 	{
@@ -452,7 +453,7 @@ UAsyncEasingAction_Color* UAsyncEasingAction_Color::StartEasing_Color(const UObj
 
 	NewAction->Begin = InBegin;
 	NewAction->End = InEnd;
-	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, bInRoundTrip, InMaxUpdateRate, InTickableWhenPaused);
+	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused);
 	NewAction->RegisterWithGameInstance(ContextWorld->GetGameInstance());
 
 	return NewAction;
@@ -512,7 +513,7 @@ void UAsyncEasingAction_Color::BroadcastCompleted(float percent)
 	}
 }
 
-UAsyncEasingAction_Rotator* UAsyncEasingAction_Rotator::StartEasing_Rotator(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FRotator InBegin, FRotator InEnd, int32 InLoopCount, bool bInRoundTrip, int32 InMaxUpdateRate, bool InTickableWhenPaused)
+UAsyncEasingAction_Rotator* UAsyncEasingAction_Rotator::StartEasing_Rotator(const UObject* WorldContextObject, EEasingType InEasingType, float InExponential, float InLoopDuration, FRotator InBegin, FRotator InEnd, int32 InLoopCount, int32 InMaxUpdateRate, bool bInRoundTrip, bool InTickableWhenPaused)
 {
 	if (IsValid(GEngine) == false)
 	{
@@ -539,7 +540,7 @@ UAsyncEasingAction_Rotator* UAsyncEasingAction_Rotator::StartEasing_Rotator(cons
 
 	NewAction->Begin = InBegin;
 	NewAction->End = InEnd;
-	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, bInRoundTrip, InMaxUpdateRate, InTickableWhenPaused);
+	NewAction->InitializeBase(ContextWorld, InEasingType, InExponential, InLoopDuration, InLoopCount, InMaxUpdateRate, bInRoundTrip, InTickableWhenPaused);
 	NewAction->RegisterWithGameInstance(ContextWorld->GetGameInstance());
 
 	return NewAction;
