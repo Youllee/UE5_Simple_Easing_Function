@@ -1,6 +1,8 @@
 # UE5 Simple Easing Function
 
-> Built as a lightweight Blueprint utility plugin for simple easing and async value interpolation in Unreal Engine 5.
+**Unreal Engine 5.8 이후로는 지원하지 않습니다.**
+
+**이 플러그인의 기능은 [UE5_EggAsyncAction](https://github.com/Youllee/UE5_EggAsyncAction) 플러그인에 통합되었습니다.**
 
 Easing Function과 비동기 액션 노드를 지원하는 Unreal Engine 5 플러그인입니다.
 
