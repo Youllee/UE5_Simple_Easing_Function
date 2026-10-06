@@ -4,6 +4,8 @@
 
 **이 플러그인의 기능은 [UE5_EggAsyncAction](https://github.com/Youllee/UE5_EggAsyncAction) 플러그인에 통합되었습니다.**
 
+---
+
 Easing Function과 비동기 액션 노드를 지원하는 Unreal Engine 5 플러그인입니다.
 
 타임라인이나 커브 에셋을 만들 필요 없이, 일정 시간 동안 자연스럽게 변화하는 동작을 간편하게 구현할 수 있습니다.
